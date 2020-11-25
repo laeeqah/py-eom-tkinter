@@ -3,6 +3,7 @@
 from tkinter import *
 from datetime import *
 from tkinter import messagebox
+from PIL import Image
 
 
 # The layout and function for the first window
@@ -26,6 +27,11 @@ lbd.place(x = 180, y = 120)
 
 lage_ent = Entry(window)
 lage_ent.pack(padx = 1, pady = 2)
+
+img = PhotoImage(file="money.png")
+resize = img.resize((150,250), Image.ANTIALIAS)
+panel = Label(window, image=img)
+panel.pack(side ="bottom")
 
 def login():
     from PIL import Image
@@ -64,7 +70,7 @@ def login():
             label = Label(window, bg = "green" , fg = "white")
             label.place(x = 80, y = 150)
 
-            lot_label = Label(window, bg = "green", fg = "white" )
+            lot_label = Label(window, bg = "green", fg = "white")
             lot_label.place(x =100, y = 200)
 
             #random non-repeating number generator
@@ -118,13 +124,13 @@ def login():
         if counter == 0 or counter == 1:
             lot_label['text'] = 'Message: You had ' +str(counter)+ ' number(s) correct. \nYou won nothing'
         elif counter == 2:
-            lot_label['text'] = 'Message: You had ' +str(counter)+ ' numbers correct \nYou won 20.00'
+            lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' numbers correct \nYou won 20.00'
         elif counter == 3:
-            lot_label['text'] = 'Message: You had ' +str(counter)+ ' numbers correct \nYou won 100.50'
+            lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' numbers correct \nYou won 100.50'
         elif counter == 4:
-            lot_label['text'] = 'Message: You had ' +str(counter)+ ' numbers correct \nYou won 2,384.00'
+            lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' numbers correct \nYou won 2,384.00'
         elif counter == 5:
-            lot_label['text'] = 'Message: You had ' +str(counter)+ ' numbers correct \nYou won 8,584.00'
+            lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' numbers correct \nYou won 8,584.00'
         elif counter == 6:
             lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' number(s) correct \nYou won 10,000000.00'
 
