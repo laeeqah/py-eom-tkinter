@@ -34,6 +34,7 @@ def login():
         if int(lage_ent.get()) >= 18:
             messagebox.showinfo("MESSAGE","You entered the Lottery")
 
+
             # Layout and function for the second window
             window = Tk()
             window.geometry("500x500")
@@ -82,7 +83,7 @@ def login():
                     break
     except ValueError:
         messagebox.showerror("Value Error", "Only Numbers are Allowed")
-
+        return True
 
     def roll():
         print("clicked")
