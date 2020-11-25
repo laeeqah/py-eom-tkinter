@@ -28,10 +28,10 @@ lbd.place(x = 180, y = 120)
 lage_ent = Entry(window)
 lage_ent.pack(padx = 1, pady = 2)
 
-img = PhotoImage(file="money.png")
-resize = img.resize((150,250), Image.ANTIALIAS)
-panel = Label(window, image=img)
-panel.pack(side ="bottom")
+# img = PhotoImage(file="money.png")
+# resize = img.resize((150,250), Image.ANTIALIAS)
+# panel = Label(window, image=img)
+# panel.pack(side ="bottom")
 
 def login():
     from PIL import Image
