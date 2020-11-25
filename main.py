@@ -4,6 +4,7 @@ from tkinter import *
 from datetime import *
 from tkinter import messagebox
 
+
 # The layout and function for the first window
 window = Tk()
 window.geometry("500x200")
@@ -21,12 +22,13 @@ today_date = now.strftime("%H: %M %p")
 datetime = add_date+"\n"+today_date
 lbd = Label(window, text = "", bg = "green", fg = "white")
 lbd['text'] = datetime
-lbd.place(x = 0, y = 100)
+lbd.place(x = 180, y = 120)
 
 lage_ent = Entry(window)
 lage_ent.pack(padx = 1, pady = 2)
 
 def login():
+    from PIL import Image
     import random
     #try/except
     try:
@@ -45,6 +47,7 @@ def login():
             heading = Label(window, text = "Winner", bg = "green", fg = "white" ,font = 15)
             heading.pack()
 
+            # all the entries to put your numbers in
             e1 = Entry(window, width = 5, bd = 5)
             e1.place(x = 100, y = 50)
             e2 = Entry(window,width = 5, bd = 5)
@@ -125,6 +128,10 @@ def login():
         elif counter == 6:
             lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' number(s) correct \nYou won 10,000000.00'
 
+        with open("lottery_results.txt", "w+") as results:  # will show the lottery numbers, how much you won and the current date in the textfile
+            for i in range(1):
+                results_f = lot_label.cget("text") + "\n" + label.cget("text") + "\n" + lbd.cget("text")
+                results.write(results_f)
 
     # button for the def roll()
     btn2 = Button(window, text = "Draw", command = roll, bg = "blue", fg = "white")
