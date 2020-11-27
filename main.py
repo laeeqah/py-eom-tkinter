@@ -5,7 +5,6 @@ from datetime import *
 from tkinter import messagebox
 
 
-
 # The layout and function for the first window
 window = Tk()
 window.geometry("500x400")
@@ -33,22 +32,20 @@ lage_ent.place(x = 170, y = 150)
 
 
 def login():
-    message = ""
+
     #try/except
     try:
         # If not older than 18 will not enter.
         if int(lage_ent.get()) >= 18:
             messagebox.showinfo("MESSAGE","You entered the Lottery")
-            message = "You entered the Lottery"
+
             run = window_2()
         else:
             messagebox.showwarning("Age warning","You are too young")
-            message = "You are too young"
+
             lage_ent.delete(0, 'end')
     except ValueError:
         messagebox.showerror("Value Error", "Only Numbers are Allowed")
-        message = "Only Numbers are Allowed"
-    return True
 
 def window_2():
     import random
@@ -131,6 +128,7 @@ def window_2():
             if user_entry[i] in lotto_num:
                 counter += 1
 
+# Will count how much numbers you got right and will give you the amount of money you won
         if counter == 0 or counter == 1:
             lot_label['text'] = 'Message: You had ' +str(counter)+ ' number(s) correct. \nYou won nothing'
         elif counter == 2:
