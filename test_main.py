@@ -1,6 +1,10 @@
-from doc import *
-import unittest
+# Testing login
 
-class Testing(unittest.Testcase):
-    def test_lottery(self):
-        assert
+import unittest
+from main import login
+
+
+class Testing(unittest.TestCase):
+
+    def test_lottery_login(self):
+        assert login() == True, "Testing Login"
