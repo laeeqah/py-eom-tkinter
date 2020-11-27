@@ -3,18 +3,21 @@
 from tkinter import *
 from datetime import *
 from tkinter import messagebox
-from PIL import Image
+
 
 
 # The layout and function for the first window
 window = Tk()
-window.geometry("500x200")
+window.geometry("500x400")
 window.title("Ithuba National Lottery of South Africa")
 window.configure(background = "green")
 
 # Label and Entry for age
+header = Label(window, text = "Ithuba National Lottery" +"\n" + "of South Africa", font=("Sans-Serif",20 ,"bold", "underline"), bg = "green", fg = "white")
+header.place(x = 100, y = 0)
+
 lage = Label(window, text = "Your Age", bg = "green", fg = "white", font = 15)
-lage.pack(padx = 0, pady = 0)
+lage.pack(padx = 0, pady = 100)
 
 #date&time
 now = datetime.now()
@@ -23,76 +26,76 @@ today_date = now.strftime("%H: %M %p")
 datetime = add_date+"\n"+today_date
 lbd = Label(window, text = "", bg = "green", fg = "white")
 lbd['text'] = datetime
-lbd.place(x = 180, y = 120)
+lbd.place(x = 180, y = 300)
 
 lage_ent = Entry(window)
-lage_ent.pack(padx = 1, pady = 2)
+lage_ent.place(x = 170, y = 150)
 
-# img = PhotoImage(file="money.png")
-# resize = img.resize((150,250), Image.ANTIALIAS)
-# panel = Label(window, image=img)
-# panel.pack(side ="bottom")
 
 def login():
-    from PIL import Image
-    import random
     #try/except
     try:
         # If not older than 18 will not enter.
         if int(lage_ent.get()) >= 18:
             messagebox.showinfo("MESSAGE","You entered the Lottery")
-
-
-            # Layout and function for the second window
-            window = Tk()
-            window.geometry("500x500")
-            window.title("Lottery Game")
-            window.configure(background = "green")
-
-            # header for the second window
-            heading = Label(window, text = "Winner", bg = "green", fg = "white" ,font = 15)
-            heading.pack()
-
-            # all the entries to put your numbers in
-            e1 = Entry(window, width = 5, bd = 5)
-            e1.place(x = 100, y = 50)
-            e2 = Entry(window,width = 5, bd = 5)
-            e2.place(x = 150, y = 50)
-            e3 = Entry(window, width = 5, bd = 5)
-            e3.place(x = 200, y = 50)
-            e4 = Entry(window, width = 5, bd = 5)
-            e4.place(x = 250, y = 50)
-            e5 = Entry(window, width = 5, bd = 5)
-            e5.place(x = 300, y = 50)
-            e6 = Entry(window, width = 5, bd = 5)
-            e6.place(x = 350, y = 50)
-
-            label = Label(window, bg = "green" , fg = "white")
-            label.place(x = 80, y = 150)
-
-            lot_label = Label(window, bg = "green", fg = "white")
-            lot_label.place(x =100, y = 200)
-
-            #random non-repeating number generator
-            while True:
-                #random generator
-                a = random.randint(1, 49)
-                b = random.randint(1, 49)
-                c = random.randint(1, 49)
-                d = random.randint(1, 49)
-                e = random.randint(1, 49)
-                f = random.randint(1, 49)
-
-                lotto_num = [a, b, c, d, e, f] # random number will display in 6 numbers
-                lotto_num = list(dict.fromkeys(lotto_num))
-                if len(lotto_num) < 6:
-                    continue
-                else:
-                    print(lotto_num)
-                    break
+            run = window_2()
+        else:
+            messagebox.showwarning("Age warning","You are too young")
+            lage_ent.delete(0, 'end')
     except ValueError:
         messagebox.showerror("Value Error", "Only Numbers are Allowed")
-        return True
+
+def window_2():
+    import random
+    # Layout and function for the second window
+    window = Tk()
+    window.geometry("500x400")
+    window.title("Lottery Game")
+    window.configure(background = "green")
+
+    # header for the second window
+    heading = Label(window, text = "Winner", bg = "green", fg = "white" ,font = 15)
+    heading.pack()
+
+    # all the entries to put your numbers in
+    e1 = Entry(window, width = 5, bd = 5)
+    e1.place(x = 100, y = 50)
+    e2 = Entry(window,width = 5, bd = 5)
+    e2.place(x = 150, y = 50)
+    e3 = Entry(window, width = 5, bd = 5)
+    e3.place(x = 200, y = 50)
+    e4 = Entry(window, width = 5, bd = 5)
+    e4.place(x = 250, y = 50)
+    e5 = Entry(window, width = 5, bd = 5)
+    e5.place(x = 300, y = 50)
+    e6 = Entry(window, width = 5, bd = 5)
+    e6.place(x = 350, y = 50)
+
+    label = Label(window, bg = "green" , fg = "white")
+    label.place(x = 80, y = 150)
+
+    lot_label = Label(window, bg = "green", fg = "white")
+    lot_label.place(x =100, y = 200)
+
+    #random non-repeating number generator
+    while True:
+        #random generator
+        a = random.randint(1, 49)
+        b = random.randint(1, 49)
+        c = random.randint(1, 49)
+        d = random.randint(1, 49)
+        e = random.randint(1, 49)
+        f = random.randint(1, 49)
+
+        lotto_num = [a, b, c, d, e, f] # random number will display in 6 numbers
+        lotto_num = list(dict.fromkeys(lotto_num))
+        if len(lotto_num) < 6:
+            continue
+        else:
+            print(lotto_num)
+            break
+
+
 
     def roll():
         print("clicked")
@@ -145,7 +148,7 @@ def login():
 
 # button for the def login()
 btn = Button(window, text = "Login", command = login, bg = "blue", fg = "white")
-btn.pack()
+btn.place(x = 220, y = 200)
 
 
 window.mainloop()
