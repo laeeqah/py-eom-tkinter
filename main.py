@@ -38,7 +38,7 @@ def login():
         # If not older than 18 will not enter.
         if int(lage_ent.get()) >= 18:
             messagebox.showinfo("MESSAGE","You entered the Lottery")
-
+            window.withdraw()
             run = window_2()
         else:
             messagebox.showwarning("Age warning","You are too young")
@@ -46,6 +46,7 @@ def login():
             lage_ent.delete(0, 'end')
     except ValueError:
         messagebox.showerror("Value Error", "Only Numbers are Allowed")
+
 
 def window_2():
     import random
@@ -76,7 +77,7 @@ def window_2():
     e6.place(x = 350, y = 50)
 
     label = Label(window, bg = "green" , fg = "white")
-    label.place(x = 80, y = 150)
+    label.place(x = 70, y = 150)
 
     lot_label = Label(window, bg = "green", fg = "white")
     lot_label.place(x =100, y = 200)
@@ -91,7 +92,7 @@ def window_2():
         e = random.randint(1, 49)
         f = random.randint(1, 49)
 
-        lotto_num = sorted([a, b, c, d, e, f]) # random number will display in 6 numbers
+        lotto_num = sorted([a, b, c, d, e, f]) # random number will display in ascending order in 6 numbers
         lotto_num = list(dict.fromkeys(lotto_num))
         if len(lotto_num) < 6:
             continue
@@ -102,14 +103,13 @@ def window_2():
 
 
     def roll():
-        print("clicked")
 
         new_list = []
         for i in lotto_num:         #prints out the the label in tkinter
             temp = " " +str(i) + " "
             new_list.append(temp)
 
-        label['text'] = "Winner Numbers are: "+str(new_list)
+        label['text'] = "Winner Numbers today are: "+str(new_list)
         try:
             lot1 = int(e1.get()) # user entry in tkinter
             lot2 = int(e2.get())
@@ -119,6 +119,7 @@ def window_2():
             lot6 = int(e6.get())
         except ValueError:
             messagebox.showerror("Value Error", "Need to be between 1 and 49 and cannot be Letters")
+
 
         user_entry = [lot1, lot2, lot3, lot4, lot5, lot6] # user entry
 
@@ -130,7 +131,7 @@ def window_2():
 
 # Will count how much numbers you got right and will give you the amount of money you won
         if counter == 0 or counter == 1:
-            lot_label['text'] = 'Message: You had ' +str(counter)+ ' number(s) correct. \nYou won nothing'
+            lot_label['text'] = 'Message: You had ' +str(counter)+ ' numbers correct. \nYou won nothing'
         elif counter == 2:
             lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' numbers correct \nYou won 20.00'
         elif counter == 3:
@@ -140,16 +141,30 @@ def window_2():
         elif counter == 5:
             lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' numbers correct \nYou won 8,584.00'
         elif counter == 6:
-            lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' number(s) correct \nYou won 10,000000.00'
+            lot_label['text'] = 'Congratulations: You had ' +str(counter)+ ' numbers correct \nYou won 10,000000.00'
 
         with open("lottery_results.txt", "w+") as results:  # will show the lottery numbers, how much you won and the current date in the textfile
             for i in range(1):
                 results_f = lot_label.cget("text") + "\n" + label.cget("text") + "\n" + lbd.cget("text")
                 results.write(results_f)
 
+
     # button for the def roll()
     btn2 = Button(window, text = "Draw", command = roll, bg = "blue", fg = "white")
-    btn2.pack(pady = 70)
+    btn2.place(x = 100, y = 100)
+
+# Function for clear button
+    def clear():
+        e1.delete(0,END)
+        e2.delete(0,END)
+        e3.delete(0,END)
+        e4.delete(0,END)
+        e5.delete(0,END)
+        e6.delete(0,END)
+
+    # button for the def clear()
+    btn3 = Button(window, text = "Clear", command = clear, bg = "red", fg = "white")
+    btn3.place(x = 340, y = 100)
 
 # button for the def login()
 btn = Button(window, text = "Login", command = login, bg = "blue", fg = "white")
